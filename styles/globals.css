@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0 10%;
+  background: var(--secondary);
+  --primary: black;
+  --secondary: hsl(120, 8%, 70%);
+  --third: white;
+  --fourth: hsl(120, 81%, 17%);
+}
+
+h1 {
+  font-size: 30px;
+  color: var(--third);
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+h3 {
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+p {
+  line-height: 150%;
+}
+
+.page-opacity {
+  opacity: 0.3;
+}
