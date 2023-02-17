@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <div>
       <NavStyles style={{ opacity: showCart ? 0.4 : 1 }}>
-        <Link href="/">cuckMarket.</Link>
+        <Link href="/">dullMarket.</Link>
         <div onClick={clickShowCart}>
           <AiOutlineShoppingCart size={30} color="hsl(120, 81%, 17%)" />
           <p 
