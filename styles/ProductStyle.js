@@ -5,18 +5,31 @@ export const ProductStyle = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 20px;
+  margin: 10px;
+  box-shadow: 6px 5px 2px hsl(0, 0%, 25%);
+  border-radius: 10px;
 
-    h2, h3, p {
-        padding: 10px;
+  h2,
+  h3,
+  p {
+    padding: 8px;
+    
+  }
+  .img-container {
+    max-width: 85%;
+    max-height: 300px;
+    margin-top: 10px;
+    margin: 10px auto 0 auto;
+
+    img {
+      width: 100%;
+
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      border-radius: 20px;
+      cursor: pointer;
     }
-  img {
-    border-radius: 10px;
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
   }
 `;

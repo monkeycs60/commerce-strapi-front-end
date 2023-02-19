@@ -7,7 +7,7 @@ const Products = ({ product }) => {
   return (
     <ProductStyle>
     <Link href={`/product/${slug}`}>
-      <div>
+      <div className="img-container">
         <img
           src={image.data.attributes.formats.small.url}
           alt={title}
