@@ -39,8 +39,5 @@ export const NavStyles = styled.nav`
       align-items: center;
       justify-content: center;
     }
-    .no-bg {
-      background: none;
-    }
   }
 `;

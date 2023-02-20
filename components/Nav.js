@@ -4,7 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import Cart from "./Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCart } from "@/store/cartSlice";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const Nav = () => {
     dispatch(toggleCart());
   };
 
-  // i want to get the redux cart
   const cart = useSelector((state) => state.cart);
 
   return (
@@ -23,16 +22,21 @@ const Nav = () => {
         <Link href="/">dullMarket.</Link>
         <div onClick={clickShowCart}>
           <AiOutlineShoppingCart size={30} color="hsl(120, 81%, 17%)" />
-          <p 
-          className={
-            cart.cart === 0 ? "no-bg" : ""
-          }
-          >{cart.cart === 0 ? "" : cart.cart}</p>
+          <AnimatePresence>
+            {cart.cart > 0 && (
+              <motion.p
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                {cart.cart}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </NavStyles>
-      <AnimatePresence>
-      {showCart && <Cart />}
-      </AnimatePresence>
+      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </div>
   );
 };
