@@ -14,7 +14,7 @@ import { MdRemoveShoppingCart } from "react-icons/md";
 import { FaShoppingBasket } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -68,6 +68,17 @@ const Cart = () => {
     dispatch(addOneToCart({ id }));
   };
 
+  const itemAppearVariant = {
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        staggerChildren: 0.3,
+      },
+    },
+    hidden: { opacity: 0 },
+  };
+
   return (
     <CartStyles
       ref={cartRef}
@@ -101,38 +112,47 @@ const Cart = () => {
         </>
       ) : (
         <>
-          <ul>
-            {cart.items.map((item) => (
-              <motion.li
-                key={item.product.id}
-                animate={{
-                  opacity: 1,
-                  transition: { duration: 0.7, delay: 0.6 },
-                  scale: 1.0,
-                }}
-                initial={{ opacity: 0, scale: 0.4 }}
-              >
-                <img
-                  src={item.product.image.data.attributes.formats.thumbnail.url}
-                  alt={item.product.title}
-                />
-                <AiFillMinusCircle
-                  size={30}
-                  color="white"
-                  onClick={() => clickRemoveFromCart(item.product.id)}
-                />
-                <Link href={`/product/${item.product.slug}`}>
-                  <p className="item-title">{item.product.title}</p>
-                </Link>
-                <AiFillPlusCircle
-                  size={30}
-                  color="white"
-                  onClick={() => clickAddToCart(item.product.id)}
-                />
-                <p className="item-quantity">{item.quantity}</p>
-              </motion.li>
-            ))}
-          </ul>
+          <motion.ul
+            variants={itemAppearVariant}
+            initial="hidden"
+            animate="visible"
+          >
+            <AnimatePresence>
+              {cart.items.map((item, index) => (
+                <motion.li
+                  variants={itemAppearVariant}
+                  key={item.product.id}
+                  animate={{
+                    opacity: 1,
+                    scale: 1.0,
+                  }}
+                  initial={{ opacity: 0, scale: 0.4 }}
+                  exit={{ opacity: 0, scale: 0.4 }}
+                >
+                  <img
+                    src={
+                      item.product.image.data.attributes.formats.thumbnail.url
+                    }
+                    alt={item.product.title}
+                  />
+                  <AiFillMinusCircle
+                    size={30}
+                    color="white"
+                    onClick={() => clickRemoveFromCart(item.product.id)}
+                  />
+                  <Link href={`/product/${item.product.slug}`}>
+                    <p className="item-title">{item.product.title}</p>
+                  </Link>
+                  <AiFillPlusCircle
+                    size={30}
+                    color="white"
+                    onClick={() => clickAddToCart(item.product.id)}
+                  />
+                  <p className="item-quantity">{item.quantity}</p>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          </motion.ul>
           <p className="item-total-quantity">Number of items: {cart.cart}</p>
           <div className="item-total-price">
             <p

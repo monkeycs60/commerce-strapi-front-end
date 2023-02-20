@@ -10,12 +10,17 @@ export const ProductStyle = styled.div`
   margin: 10px;
   box-shadow: 6px 5px 2px hsl(0, 0%, 25%);
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 8px 8px 5px hsl(0, 0%, 20%);
+    transform: scale(1.05);
+  }
 
   h2,
   h3,
   p {
     padding: 8px;
-    
   }
   .img-container {
     max-width: 85%;
