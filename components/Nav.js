@@ -5,10 +5,12 @@ import Cart from "./Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCart } from "@/store/cartSlice";
 import { AnimatePresence, motion } from "framer-motion";
+import User from "./User";
 
 const Nav = () => {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cart.showCart);
+
 
   const clickShowCart = () => {
     dispatch(toggleCart());
@@ -20,6 +22,7 @@ const Nav = () => {
     <div>
       <NavStyles style={{ opacity: showCart ? 0.4 : 1 }}>
         <Link href="/">dullMarket.</Link>
+        <User />
         <div onClick={clickShowCart}>
           <AiOutlineShoppingCart size={30} color="hsl(120, 81%, 17%)" />
           <AnimatePresence>

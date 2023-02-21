@@ -12,7 +12,7 @@ export const CartStyles = styled(motion.div)`
   display: flex;
   flex-direction: column;
   background: goldenrod;
-  border-radius: 40px;
+  border-radius: 40px 0 0 40px;
   overflow-y: scroll;
 
   .cart-empty {
@@ -24,8 +24,8 @@ export const CartStyles = styled(motion.div)`
     height: 100%;
     color: white;
     p {
-font-size: 30px;
-font-style: italic;
+      font-size: 30px;
+      font-style: italic;
     }
   }
 
@@ -98,6 +98,18 @@ font-style: italic;
       text-align: right;
     }
   }
+  .item-checkout-button {
+    margin-top: 5vh;
+    height: 50px;
+    color: white;
+    background: hsl(120, 10%, 0%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+  }
   .item-clear-button {
     position: relative;
     display: flex;
@@ -105,14 +117,14 @@ font-style: italic;
     align-items: center;
     gap: 10px;
     width: 70%;
-    height: 40px;
-    margin: 5vh auto 10px auto;
-    background: hsl(0, 50%, 80%);
+    height: 36px;
+    margin: 1vh auto 10px auto;
+    background: hsl(0, 10%, 65%);
     border: none;
     border-radius: 5px;
-    font-size: 20px;
-    font-weight: 700;
-    color: hsl(0, 70%, 30%);
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
     cursor: pointer;
     box-shadow: 2px 2px 3px 2px hsl(0, 0%, 20%);
   }
@@ -121,7 +133,7 @@ font-style: italic;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 3vh;
     svg {
       cursor: pointer;
     }

@@ -15,6 +15,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { getStripe } from "@/lib/getStripe";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -22,6 +23,7 @@ const Cart = () => {
   const cartRef = useRef(null);
 
   console.log(cart);
+  console.log(cart.items);
 
   // VAT Handling
   const cartVAT = (cart.total * 0.2).toFixed(2);
@@ -79,12 +81,27 @@ const Cart = () => {
     hidden: { opacity: 0 },
   };
 
+  //payment stripe
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cart.items),
+    });
+    const data = await response.json();
+    console.log(data);
+    await stripe.redirectToCheckout({ sessionId: data.id }); 
+  };
+
   return (
     <CartStyles
       ref={cartRef}
       animate={{ opacity: 1, transition: { duration: 0.8 }, x: 0 }}
       initial={{ opacity: 0, x: 500 }}
-      exit={{ opacity: 0, transition: { duration: 0.7 }, x: 500 }}
+      exit={{ opacity: 0, transition: { duration: 0.5 }, x: 500 }}
     >
       <h1>Cart: what you&apos;ve stored</h1>
       {cart.items.length === 0 ? (
@@ -164,12 +181,15 @@ const Cart = () => {
             </p>
             {showVAT && <p className="vat">VAT: ${cartVAT}</p>}
           </div>
+          <button className="item-checkout-button" onClick={handleCheckout}>
+            <p>Purchase</p>
+          </button>
           <div className="cross-div" onClick={clickXShowCart}>
             <BsArrowReturnLeft size={50} color="white" />
           </div>
           <button className="item-clear-button" onClick={clickResetCart}>
             <p>Clear Cart</p>
-            <MdRemoveShoppingCart size={20} color="hsl(0, 70%, 30%)" />
+            <MdRemoveShoppingCart size={20} color="white" />
           </button>
         </>
       )}
