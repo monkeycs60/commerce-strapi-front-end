@@ -21,7 +21,7 @@ export const NavStyles = styled.nav`
     gap: 20px;
   div {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     position: relative;
