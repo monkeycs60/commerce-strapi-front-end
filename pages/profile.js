@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
-import styled from "styled-components";
+import { ProfileStyle } from "@/styles/ProfileStyle";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { getSession } from "@auth0/nextjs-auth0";
+import formatMoney from "@/lib/formatMoney";
+
 
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
@@ -33,7 +35,7 @@ const Profile = ({ orders }) => {
 
   console.log(user);
   return (
-    <div>
+    <ProfileStyle>
       {isLoading && <div>Loading...</div>}
       {error && <div>{error.message}</div>}
       {user && (
@@ -51,7 +53,7 @@ const Profile = ({ orders }) => {
             {orders.map((order) => (
               <li key={order.id}>
                 <p>Order number: {order.id}</p>
-                <p>{order.amount}</p>
+                <p>Price: {formatMoney(order.amount)}</p>
                 <p>Created the {order.created}</p>
                 <p>Current Status{order.status}</p>
                 <p>Receipt email: {order.receipt_email}</p>
@@ -62,7 +64,7 @@ const Profile = ({ orders }) => {
           <button onClick={logOut}>Logout</button>
         </div>
       )}
-    </div>
+    </ProfileStyle>
   );
 };
 

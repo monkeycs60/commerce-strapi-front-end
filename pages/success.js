@@ -3,8 +3,7 @@ import Image from "next/image";
 import mimi from "../public/mimmie-mathy.png";
 import { SuccessStyles } from "@/styles/SuccessStyle";
 import { useSelector } from "react-redux";
-
-
+import formatMoney from "@/lib/formatMoney";
 
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
@@ -28,7 +27,6 @@ export default function Success({ order }) {
 
   console.log(cart);
   console.log(order);
-
 
   return (
     <SuccessStyles
@@ -58,7 +56,7 @@ export default function Success({ order }) {
               <div className="order__text">
                 <h3>{item.description}</h3>
                 <h4>Quantity: {item.quantity}</h4>
-                <h4>Price: ${item.amount_total / 100}</h4>
+                <h4>Price: {formatMoney(item.amount_total)}</h4>
               </div>
               {cart.items.map((cartItem) => {
                 if (item.description === cartItem.product.title) {
