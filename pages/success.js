@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import mimi from "../public/mimmie-mathy.png";
 import { SuccessStyles } from "@/styles/SuccessStyle";
-import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+
+
 
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
@@ -24,8 +25,11 @@ export async function getServerSideProps(context) {
 export default function Success({ order }) {
   const cart = useSelector((state) => state.cart);
   const router = useRouter();
-  console.log(order);
+
   console.log(cart);
+  console.log(order);
+
+
   return (
     <SuccessStyles
       initial={{ opacity: 0, scale: 0.7 }}

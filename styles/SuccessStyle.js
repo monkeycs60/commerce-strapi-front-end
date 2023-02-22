@@ -75,14 +75,14 @@ export const SuccessStyles = styled(motion.div)`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: space-between;
       gap: 20px;
       color: white;
       height: 100%;
       .order__infos {
         height: 20vh;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         position: relative;
         width: 200px;
         img {

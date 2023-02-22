@@ -1,13 +1,27 @@
 import Stripe from "stripe";
-
+import { getSession } from "@auth0/nextjs-auth0";
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 
+
 export default async function handler(req, res) {
+  
+  const session = await getSession(req, res);
+  console.log(session + "ceci est la session");
+  const user = session?.user;
+  const stripeId = user["http://localhost:3000/stripe_customer_id"];
+  console.log(stripeId + "ceci est le stripe id");
+  
+
+
   if (req.method === "POST") {
     try {
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
         mode: "payment",
+        customer: stripeId,
+        payment_intent_data: {
+          setup_future_usage: "off_session",
+        },
         payment_method_types: ["card"],
         shipping_address_collection: {
           allowed_countries: ["US", "CA", "GB", "FR", "DE", "IT", "ES"],

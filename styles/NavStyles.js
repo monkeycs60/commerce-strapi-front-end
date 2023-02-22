@@ -15,6 +15,10 @@ export const NavStyles = styled.nav`
     color: hsl(120, 81%, 17%);
     text-decoration: none;
   }
+  .clickable-pannel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   div {
     display: flex;
     flex-direction: column-reverse;
@@ -39,5 +43,6 @@ export const NavStyles = styled.nav`
       align-items: center;
       justify-content: center;
     }
+  }
   }
 `;

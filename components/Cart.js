@@ -83,6 +83,7 @@ const Cart = () => {
 
   //payment stripe
   const handleCheckout = async () => {
+    dispatch(toggleCart()); 
     const stripe = await getStripe();
     const response = await fetch("/api/stripe", {
       method: "POST",
@@ -93,7 +94,8 @@ const Cart = () => {
     });
     const data = await response.json();
     console.log(data);
-    await stripe.redirectToCheckout({ sessionId: data.id }); 
+    dispatch(resetCart());
+    await stripe.redirectToCheckout({ sessionId: data.id });
   };
 
   return (
