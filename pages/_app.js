@@ -7,6 +7,7 @@ import { Reduxstore } from "@/store/store";
 import { store, persistor } from "@/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import OpacityWrapper from "@/components/OpacityWrapper";
+import { Toaster } from "react-hot-toast";
 
 const client = createClient({
   url: process.env.NEXT_PUBLIC_BACKEND_API,
@@ -18,6 +19,9 @@ export default function App({ Component, pageProps }) {
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Provider value={client}>
+            <Toaster position="top-center" reverseOrder={false} 
+              containerStyle={{top: '10vh'}}
+            />
             <Nav />
             <OpacityWrapper>
               <Component {...pageProps} />

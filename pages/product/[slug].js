@@ -7,8 +7,9 @@ import { ProductDetailsStyle } from "@/styles/ProductDetails";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
+import { toast } from "react-hot-toast";
 
-const { motion } = require("framer-motion"); 
+const { motion } = require("framer-motion");
 
 const ProductDetails = ({ product }) => {
   //log redux state
@@ -37,6 +38,16 @@ const ProductDetails = ({ product }) => {
         addToCart({ id, title, slug, quantity, price, description, image })
       );
       setQuantity(1);
+      toast.success(`${quantity} ${title} added to cart`, {
+        style: {
+          border: "1px solid #DAA520",
+          padding: "16px",
+          color: "#713200",
+          borderRadius: "10px",
+          fontWeight: "bold",
+        },
+        iconTheme: { primary: "#DAA520", secondary: "white" },
+      });
     }
   };
 
