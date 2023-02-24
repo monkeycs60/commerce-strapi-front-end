@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import { toast } from "react-hot-toast";
 
-const { motion } = require("framer-motion");
 
 const ProductDetails = ({ product }) => {
   //log redux state
@@ -21,6 +20,7 @@ const ProductDetails = ({ product }) => {
 
   const router = useRouter();
   const { slug } = router.query;
+  console.log(slug);
   const [result] = useQuery({
     query: GET_PRODUCT_QUERY,
     variables: { slug: slug },
