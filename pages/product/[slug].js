@@ -9,6 +9,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import { toast } from "react-hot-toast";
 
+export async function getServerSideProps({ params }) {
+  const { slug } = params;
+
+  const response = await fetch(`http://localhost:1337/api/products`);
+  const data = await response.json();
+
+  const product = data.data.find((prod) => prod.attributes.slug === slug);
+
+  if (!product) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      product,
+    },
+  };
+}
 
 const ProductDetails = ({ product }) => {
   //log redux state
@@ -20,7 +40,7 @@ const ProductDetails = ({ product }) => {
 
   const router = useRouter();
   const { slug } = router.query;
-  console.log(slug);
+  console.log(slug + "this is SLUG");
   const [result] = useQuery({
     query: GET_PRODUCT_QUERY,
     variables: { slug: slug },
@@ -31,6 +51,7 @@ const ProductDetails = ({ product }) => {
 
   const { title, description, price, image } = data.products.data[0].attributes;
   const { id } = data.products.data[0];
+  console.log(title + "this is TITLE");
 
   const handleAddToCart = () => {
     if (quantity > 0) {
