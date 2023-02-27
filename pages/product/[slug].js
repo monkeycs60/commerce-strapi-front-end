@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import { toast } from "react-hot-toast";
 
+// Gestion de la page 404 sur les routes dynamiques Slug
 export async function getServerSideProps({ params }) {
   const { slug } = params;
 

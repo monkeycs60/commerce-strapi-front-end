@@ -26,7 +26,7 @@ const Nav = () => {
   return (
     <div>
       <NavStyles style={{ opacity: showCart ? 0.4 : 1 }}>
-        <Link href="/">dullMarket.</Link>
+        <Link href="/">Botanical Bliss</Link>
         <div className="clickable-pannel">
           <User />
           <div onClick={clickShowCart}>
