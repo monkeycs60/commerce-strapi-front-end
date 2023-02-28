@@ -4,7 +4,8 @@ import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "@/lib/query";
 import Products from "@/components/Products";
 import { Gallery } from "@/styles/Gallery";
-import HeroBanner from "@/components/HeroBanner";
+import ParentHeroBanner from "@/components/ParentHeroBanner";
+import SalesSection from "@/components/SalesSection";
 
 export default function Home() {
   const [result] = useQuery({
@@ -25,7 +26,8 @@ export default function Home() {
         <link rel="icon" href="/men-favicon.png" />
       </Head>
       <main>
-      <HeroBanner />
+        <ParentHeroBanner />
+        <SalesSection />
         <Gallery>
           {products.map((product) => (
             <Products key={product.attributes.slug} product={product} />

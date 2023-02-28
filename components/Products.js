@@ -5,7 +5,9 @@ const Products = ({ product }) => {
   const { title, description, price, slug, image } = product.attributes;
 
   return (
-    <ProductStyle>
+    <ProductStyle
+    id="product-index"
+    >
     <Link href={`/product/${slug}`}>
       <div className="img-container">
         <img

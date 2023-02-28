@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductStyle = styled.div`
-  background-color: white;
+  background-color: var(--fifth);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,8 @@ export const ProductStyle = styled.div`
 
   &:hover {
     box-shadow: 8px 8px 5px hsl(0, 0%, 20%);
+    background-color: var(--third);
+    color: var(--sixth);
     transform: scale(1.05);
   }
 

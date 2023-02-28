@@ -14,8 +14,6 @@ const Nav = () => {
   const showCart = useSelector((state) => state.cart.showCart);
 
   const { user, error, isLoading } = useUser();
-  console.log(user);
-
 
   const clickShowCart = () => {
     dispatch(toggleCart());
