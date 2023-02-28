@@ -6,6 +6,7 @@ import Products from "@/components/Products";
 import { Gallery } from "@/styles/Gallery";
 import ParentHeroBanner from "@/components/ParentHeroBanner";
 import SalesSection from "@/components/SalesSection";
+import SalesTitle from "@/components/SalesTitle";
 
 export default function Home() {
   const [result] = useQuery({
@@ -27,6 +28,7 @@ export default function Home() {
       </Head>
       <main>
         <ParentHeroBanner />
+        <SalesTitle />
         <SalesSection />
         <Gallery>
           {products.map((product) => (

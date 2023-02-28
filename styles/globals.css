@@ -18,12 +18,15 @@ body {
   overflow-x: hidden;
   margin: 0 10%;
   background: var(--secondary);
-  --primary: black;
+  --primary: #1a090d;
   --secondary: hsl(120, 8%, 70%);
   --third: white;
   --fourth: hsl(120, 81%, 17%);
   --fifth: hsla(0, 20%, 97%, 0.583);
   --sixth: hsl(33, 69%, 13%);
+  --seventh: goldenrod;
+      font-family: "Roboto", sans-serif;
+
 }
 
 h1 {
